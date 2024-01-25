@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <input name="muallif_ismi" type="text" placeholder="Muallif ismini yozing">
+        <button>Qidirish</button>
+    </form>
+    <h1>Tirik mualliflar ro'yxati</h1>
+    {%for muallif in mualliflar %}
+    <ul>
+        <li>
+            {{muallif.id}}.{{muallif.ism}}     <a href="/muallif_ochirish/{{muallif.id}}"><button>Delete</button></a>
+        </li>
+    </ul>
+    {%endfor%}
+
+
+</body>
+</html>

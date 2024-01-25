@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="get">
+        <input name="ismi" type="text" placeholder="Talaba ismini yozing">
+        <button>Qidirish</button>
+    </form>
+    <br>
+    <h1>Hamma Talabalar ro'yxati</h1>
+    {%for student in students %}
+    <ul>
+        <li>
+            {{student.id}}.{{student.ism}}             <a href="/talaba_ochir/{{student.id}}"><button>Delete</button></a>
+        </li>
+    </ul>
+    {%endfor%}
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>record</title>
+</head>
+<body>
+    <h1>
+        4-kurslarnin hamma recordlari
+    </h1>
+    {%for records in recordslar%}
+    <ul>
+        <li>
+            {{records.talaba}}
+        </li>
+        <li>
+            {{records.Kitob}}
+        </li>
+        <li>
+            {{records.kutubxonachi}}
+        </li>
+        <li>
+            {{records.olingan_sana}}
+        </li>
+        <li>
+            {{records.qaytardi}}
+        </li>
+        <li>
+            {{records.qaytarish_sana}}
+        </li>
+    </ul>
+{%endfor%}
+</body>
+</html>

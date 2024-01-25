@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="get">
+        <input name="talaba_ismi" type="text" placeholder="Talaba ismini yozing">
+        <button>Qidirmoq</button>
+    </form>
+    <h1>Hamma recordlar haqidagi ma'lumotlar</h1>
+    {%for r in record%}
+    <ul>
+        <li>
+            Olgan talaba: {{r.talaba}}
+        </li>
+        <li>
+            Kitob: {{r.Kitob}}
+        </li>
+        <li>
+            Kutubxonachi: {{r.kutubxonachi}}
+        </li>
+        <li>
+            Olingan sana: {{r.olingan_sana}}
+        </li>
+        <li>
+            Qaytargan: {{r.qaytardi}}
+        </li>
+        <li>
+            Qaytarilgan sana: {{r.qaytarish_sana}}
+        </li>
+    </ul>
+    <a href="/recordni_ochirish/{{r.id}}/"><button>Delete</button></a>
+{%endfor%}
+</body>
+</html>

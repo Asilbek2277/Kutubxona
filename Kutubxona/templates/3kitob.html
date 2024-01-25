@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitob</title>
+</head>
+<body>
+    <h1>3 ta eng katta kitoblar</h1>
+    {%for r in kitob%}
+        <ul>
+            <li>
+                {{r.nom}}
+            </li>
+        </ul>
+            {%endfor%}
+</body>
+</html>

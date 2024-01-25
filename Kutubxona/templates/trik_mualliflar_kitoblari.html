@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitoblar</title>
+</head>
+<body>
+    <h1>
+       Tirik mualliflarning kitoblari
+    </h1>
+    {%for r in kitoblar%}
+    <ul>
+        <li>
+            {{r.nom}}
+        </li>
+    </ul>
+            {%endfor%}
+
+</body>
+</html>
