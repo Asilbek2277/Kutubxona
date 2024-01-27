@@ -18,6 +18,12 @@
     </ul>
     {%endfor%}
 
-
+    <form method="post">{% csrf_token%}
+        <input name="ismi" type="text" placeholder="Muallifning ismi">
+        <input name="jins" type="text" placeholder="Jinsi">
+        <input name="date" type="date" placeholder="Tug'ilgan kuni">
+        <input name="kitob" type="number" placeholder="Kitoblar soni">
+        <button>Qo'shish</button>
+    </form>
 </body>
 </html>

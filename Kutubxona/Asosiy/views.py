@@ -1,17 +1,39 @@
 from django.shortcuts import render, redirect
 
 from .models import *
+
+
+
 def all_books(request):
+    if request.method=="POST":
+        Kitob.objects.create(
+            nom=request.POST.get("nomi"),
+            janr=request.POST.get("janr"),
+            sahifa=request.POST.get("sahifa"),
+            muallif=Muallif.objects.get(id=request.POST.get("mualliflar")),
+        )
+        return redirect("/books/")
     data={
+        "mualliflar": Muallif.objects.all(),
         "books": Kitob.objects.all()
     }
     return render(request, 'kitoblar.html', data)
 
+
+
 def all_students(request):
+    if request.method == "POST":
+        Talaba.objects.create(
+            ism=request.POST.get("ismi"),
+            kurs=request.POST.get("k"),
+            kitob_soni=request.POST.get("k_soni"),
+        )
+        return redirect("/students/")
 
     natija=Talaba.objects.all()
 
     kiritilgan_ismi=request.GET.get("ismi")
+
 
     if kiritilgan_ismi is not None:
         natija=Talaba.objects.filter(ism__contains=kiritilgan_ismi)
@@ -43,10 +65,22 @@ def ism_a(request):
     return render(request, "Bitiruvchilar.html", data)
 
 def muallif(request):
+    if request.method=="POST":
+        Muallif.objects.create(
+            ism=request.POST.get("ismi"),
+            jins=request.POST.get("jins"),
+            tugilgan_sana=request.POST.get("date"),
+            Kitoblar_soni=request.POST.get("kitob"),
+            tirik=False,
+        )
+        return redirect("/muallif/")
     data={
         "mualliflar": Muallif.objects.all()
     }
     return render(request, "Mualliflar.html", data)
+
+
+
 def muallif_ochirish(request, pk):
     Muallif.objects.get(id=pk).delete()
     return redirect("/muallif/")
