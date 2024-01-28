@@ -265,3 +265,16 @@ def talaba_ochir(rec, pk):
 def kitob_ochirish(rec, pk):
     Kitob.objects.get(id=pk).delete()
     return redirect("/kitob/")
+
+
+def kutubxonachilar(request):
+    if request.method=='POST':
+        Kutubxonachi.objects.create(
+            ism=request.POST.get("ismi"),
+            ish_vaqti=request.POST.get("vaqt"),
+        )
+        return redirect("/kutubxonachilar/")
+    data={
+        "kutubxonachilar": Kutubxonachi.objects.all()
+    }
+    return render(request, "Kutubxonachilar.html", data)

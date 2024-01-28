@@ -29,8 +29,8 @@ class Kitob(models.Model):
         return self.nom
 
 class Kutubxonachi(models.Model):
-    ism=models.CharField(max_length=20)
-    ish_vaqti=models.CharField(max_length=20)
+    ism=models.CharField(max_length=20, null=True)
+    ish_vaqti=models.CharField(max_length=50)
 
     def __str__(self):
         return self.ism
@@ -41,7 +41,7 @@ class Record(models.Model):
     kutubxonachi=models.ForeignKey(Kutubxonachi, on_delete=models.CASCADE)
     olingan_sana=models.DateField()
     qaytardi=models.BooleanField(default=False)
-    qaytarish_sana=models.DateField()
+    qaytarish_sana=models.DateField(null=True, blank=True)
     
     def __str__(self):
         return f"{self.qaytarish_sana}"

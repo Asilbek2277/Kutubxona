@@ -46,4 +46,5 @@ urlpatterns = [
     path('bitiruvchi_t_r/', bitiruvchi_t_r),
     path('talaba_ochir/<int:pk>/', talaba_ochir),
     path('kitob_ochirish/<int:pk>/', kitob_ochirish),
+    path('kutubxonachilar/', kutubxonachilar),
 ]
