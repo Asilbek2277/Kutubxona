@@ -66,12 +66,16 @@ def ism_a(request):
 
 def muallif(request):
     if request.method=="POST":
+        if request.POST.get("tirikmi")=='on':
+            natija=True
+        else:
+            natija=False
         Muallif.objects.create(
             ism=request.POST.get("ismi"),
             jins=request.POST.get("jins"),
             tugilgan_sana=request.POST.get("date"),
             Kitoblar_soni=request.POST.get("kitob"),
-            tirik=False,
+            tirik=natija,
         )
         return redirect("/muallif/")
     data={
@@ -140,11 +144,34 @@ def bitta_kitob(request, pk):
 
 
 def hamma_recordlar(request):
+
+#Recordlar jadvali uchun malumot qo'shish
+
+    if request.method=='POST':
+        if request.POST.get("qaytardimi")=='on':
+            natija=True
+        else:
+            natija=False
+
+        Record.objects.create(
+            talaba=Talaba.objects.get(id=request.POST.get('talaba')),
+            Kitob=Kitob.objects.get(id=request.POST.get('kitob')),
+            kutubxonachi=Kutubxonachi.objects.get(id=request.POST.get('k_chi')),
+            olingan_sana=request.POST.get("sana"),
+            qaytardi=natija,
+            qaytarish_sana=request.POST.get("q_sana"),
+        )
+        return redirect("/hamma_recordlar/")
+
+
     natija=Record.objects.all()
     kiritilgan_ism=request.GET.get("talaba_ismi")
     if kiritilgan_ism is not None:
         natija=Record.objects.filter(talaba__ism__contains=kiritilgan_ism)
     data={
+        "kitoblar":Kitob.objects.all(),
+        "kutubxonachi":Kutubxonachi.objects.all(),
+        "talabalar": Talaba.objects.all(),
         "record": natija
     }
     return render(request, "Records.html", data)
