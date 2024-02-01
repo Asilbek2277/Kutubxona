@@ -14,7 +14,9 @@
     {%for student in students %}
     <ul>
         <li>
-            {{student.id}}.{{student.ism}}             <a href="/talaba_ochir/{{student.id}}"><button>Delete</button></a>
+            {{student.id}}.{{student.ism}}
+            <a href="/talaba_ochir/{{student.id}}"><button>Delete</button></a>
+            <a href="/talabalar/{{student.id}}/tahrirlash/"><button>Edit</button></a>
         </li>
     </ul>
     {%endfor%}

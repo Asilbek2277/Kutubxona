@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recordlar</title>
+</head>
+<body>
+    <h1>Hamma recordlarni tahrirlash</h1>
+    <form method="post" action="/recordlar/{{recordlar.id}}/tahrirlash/">
+        {%csrf_token%}
+        <label>Talaba ismi:</label>
+        <select name="ism">
+            {%for i in talabalar%}
+            <option>
+                {{i.ism}}
+            </option>
+            {%endfor%}
+        </select>
+
+
+        <label>Kitob nomi:</label>
+        <select name="kitob">
+            {%for i in kitoblar%}
+            <option>{{i.nom}}</option>
+            {%endfor%}
+        </select>
+
+        <label>Kutibxonachi ismi:</label>
+        <select name="kutubxonachi">
+            {%for i in kutubxonachilar%}
+            <option>{{i.ism}}</option>
+            {%endfor%}
+        </select>
+
+        <label>Olingan sana:</label>
+        <input name="olingan_sana" type="date" value="{{recordlar.olingan_sana}}">
+
+        <label>Qaytardi:</label>
+        <input name="qaytardi" type="checkbox" {% if recordlar.qaytardi == True %} checked {% endif %}>
+
+        <label>Qaytarilgan_sana</label>
+        <input name="qaytarish_sana" type="date" value="{{recordlar.qaytarish_sana}}">
+        <button type="submit">Edit</button>
+
+    </form>
+
+</body>
+</html>

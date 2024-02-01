@@ -32,6 +32,7 @@
         </li>
     </ul>
     <a href="/recordni_ochirish/{{r.id}}/"><button>Delete</button></a>
+    <a href="/recordlar/{{r.id}}/tahrirlash/"><button>Edit</button></a>
 {%endfor%}
 
     <form method="post"> {%csrf_token%}

@@ -13,7 +13,9 @@
     {%for muallif in mualliflar %}
     <ul>
         <li>
-            {{muallif.id}}.{{muallif.ism}}     <a href="/muallif_ochirish/{{muallif.id}}"><button>Delete</button></a>
+            {{muallif.id}}.{{muallif.ism}}
+            <a href="/muallif_ochirish/{{muallif.id}}"><button>Delete</button></a>
+            <a href="/mualliflar/{{muallif.id}}/tahrirlash/"><button>Edit</button></a>
         </li>
     </ul>
     {%endfor%}

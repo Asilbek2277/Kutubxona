@@ -21,18 +21,29 @@ from Asosiy.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('books/', all_books),
+
     path('students/', all_students),
+    path('talabalar/<int:pk>/tahrirlash/', talaba_tahrirla),
+
     path('bitiruvchilar/', bitiruvchilar),
     path('talaba/', talaba),
     path('ism/', ism_a),
     path('muallif/', muallif),
     path('muallif_ochirish/<int:pk>/', muallif_ochirish),
     path('bitta_talaba/<int:pk>/', bitta_talaba),
+
     path('hamma_mualliflar/', hamma_mualliflar),
+    path('mualliflar/<int:pk>/tahrirlash/', muallifni_tahrirlash),
+
     path('bitta_muallif/<int:son>/', bitta_muallif),
     path('kitob/', hamma_kitoblar),
     path('bitta_kitob/<int:pk>/', bitta_kitob),
+
+
     path('hamma_recordlar/', hamma_recordlar),
+    path('recordlar/<int:pk>/tahrirlash/', recordlarni_tahrirlash),
+
+
     path('recordni_ochirish/<int:pk>/', recordni_ochirish),
     path('tirik_mualliflar/', tirik_mualliflar),
     path('uchta_kitob/', uchta_kitob),
@@ -47,4 +58,5 @@ urlpatterns = [
     path('talaba_ochir/<int:pk>/', talaba_ochir),
     path('kitob_ochirish/<int:pk>/', kitob_ochirish),
     path('kutubxonachilar/', kutubxonachilar),
+    path('kutubxonachilar/<int:pk>/tahrirlash/', kutubxonachilarni_tahrirlash),
 ]
