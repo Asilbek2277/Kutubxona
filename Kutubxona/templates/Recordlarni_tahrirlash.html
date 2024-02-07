@@ -11,7 +11,7 @@
         <label>Talaba ismi:</label>
         <select name="ism">
             {%for i in talabalar%}
-            <option>
+            <option value="{{i.id}} ">
                 {{i.ism}}
             </option>
             {%endfor%}
@@ -21,25 +21,25 @@
         <label>Kitob nomi:</label>
         <select name="kitob">
             {%for i in kitoblar%}
-            <option>{{i.nom}}</option>
+            <option value="{{i.id}}">{{i.nom}}</option>
             {%endfor%}
         </select>
 
         <label>Kutibxonachi ismi:</label>
         <select name="kutubxonachi">
             {%for i in kutubxonachilar%}
-            <option>{{i.ism}}</option>
+            <option value="{{i.id}}">{{i.ism}}</option>
             {%endfor%}
         </select>
 
-        <label>Olingan sana:</label>
-        <input name="olingan_sana" type="date" value="{{recordlar.olingan_sana}}">
+<!--        <label>Olingan sana:</label>-->
+<!--        <input name="olingan_sana" type="date">-->
 
         <label>Qaytardi:</label>
         <input name="qaytardi" type="checkbox" {% if recordlar.qaytardi == True %} checked {% endif %}>
 
-        <label>Qaytarilgan_sana</label>
-        <input name="qaytarish_sana" type="date" value="{{recordlar.qaytarish_sana}}">
+<!--        <label>Qaytarilgan_sana</label>-->
+<!--        <input name="qaytarish_sana" type="date" >-->
         <button type="submit">Edit</button>
 
     </form>

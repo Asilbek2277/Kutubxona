@@ -36,6 +36,7 @@ urlpatterns = [
     path('mualliflar/<int:pk>/tahrirlash/', muallifni_tahrirlash),
 
     path('bitta_muallif/<int:son>/', bitta_muallif),
+
     path('kitob/', hamma_kitoblar),
     path('bitta_kitob/<int:pk>/', bitta_kitob),
 

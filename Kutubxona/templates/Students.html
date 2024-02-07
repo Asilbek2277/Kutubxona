@@ -6,6 +6,10 @@
 </head>
 <body>
     <form method="get">
+
+
+
+
         <input name="ismi" type="text" placeholder="Talaba ismini yozing">
         <button>Qidirish</button>
     </form>
@@ -22,9 +26,12 @@
     {%endfor%}
     <hr>
     <form method="post">{% csrf_token %}
-        <input type="text" name="ismi" placeholder="Talaba ismi">
-        <input type="number" name="k" placeholder="Kurs">
-        <input type="number" name="k_soni" placeholder="Kitoblar soni">
+
+        {{form.as_p}}
+
+<!--        <input type="text" name="ismi" placeholder="Talaba ismi">-->
+<!--        <input type="number" name="k" placeholder="Kurs">-->
+<!--        <input type="number" name="k_soni" placeholder="Kitoblar soni">-->
 
         <button >Ma'lumot qo'shish</button>
     </form>

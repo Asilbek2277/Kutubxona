@@ -36,30 +36,35 @@
 {%endfor%}
 
     <form method="post"> {%csrf_token%}
-        <label>Talaba ismi:</label>
-        <select name="talaba">
-            {%for t in talabalar%}
-            <option value="{{t.id}}">{{t.ism}}</option>
-            {%endfor%}
-        </select>
-        <label>Kitob nomi:</label>
-        <select name="kitob">
-            {%for k in kitoblar%}
-            <option value="{{k.id}}">{{k.nom}}</option>
-            {%endfor%}
-        </select>
-        <label>Kutubxonachi ismi:</label>
-        <select name="k_chi">
-            {%for k in kutubxonachi%}
-            <option value="{{k.id}}">{{k.ism}}</option>
-            {%endfor%}
-        </select>
-        <label>Sana:</label>
-        <input name="sana" type="date">
-        <label>Qaytardi:</label>
-        <input type="checkbox" name="qaytardimi">
-        <label>Qaytarish_sana:</label>
-        <input name="q_sana" type="date">
+
+
+        {{form.as_p}}
+
+
+<!--        <label>Talaba ismi:</label>-->
+<!--        <select name="talaba">-->
+<!--            {%for t in talabalar%}-->
+<!--            <option value="{{t.id}}">{{t.ism}}</option>-->
+<!--            {%endfor%}-->
+<!--        </select>-->
+<!--        <label>Kitob nomi:</label>-->
+<!--        <select name="kitob">-->
+<!--            {%for k in kitoblar%}-->
+<!--            <option value="{{k.id}}">{{k.nom}}</option>-->
+<!--            {%endfor%}-->
+<!--        </select>-->
+<!--        <label>Kutubxonachi ismi:</label>-->
+<!--        <select name="k_chi">-->
+<!--            {%for k in kutubxonachi%}-->
+<!--            <option value="{{k.id}}">{{k.ism}}</option>-->
+<!--            {%endfor%}-->
+<!--        </select>-->
+<!--        <label>Sana:</label>-->
+<!--        <input name="sana" type="date">-->
+<!--        <label>Qaytardi:</label>-->
+<!--        <input type="checkbox" name="qaytardimi">-->
+<!--        <label>Qaytarish_sana:</label>-->
+<!--        <input name="q_sana" type="date">-->
         <button>Qo'shish</button>
     </form>
 </body>

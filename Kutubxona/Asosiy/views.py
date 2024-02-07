@@ -2,31 +2,52 @@ from django.shortcuts import render, redirect
 
 from .models import *
 
+from .forms import *
 
 def all_books(request):
     if request.method == "POST":
-        Kitob.objects.create(
-            nom=request.POST.get("nomi"),
-            janr=request.POST.get("janr"),
-            sahifa=request.POST.get("sahifa"),
-            muallif=Muallif.objects.get(id=request.POST.get("mualliflar")),
-        )
+
+        d=KitobForm(request.POST)
+        if d.is_valid():
+            d.save()
+
+
+
+        # Kitob.objects.create(
+        #     nom=request.POST.get("nomi"),
+        #     janr=request.POST.get("janr"),
+        #     sahifa=request.POST.get("sahifa"),
+        #     muallif=Muallif.objects.get(id=request.POST.get("mualliflar")),
+        # )
         return redirect("/books/")
     data = {
         "mualliflar": Muallif.objects.all(),
-        "books": Kitob.objects.all()
+        "books": Kitob.objects.all(),
+        "form": KitobForm()
     }
     return render(request, 'kitoblar.html', data)
 
 
 def all_students(request):
     if request.method == "POST":
-        Talaba.objects.create(
-            ism=request.POST.get("ismi"),
-            kurs=request.POST.get("k"),
-            kitob_soni=request.POST.get("k_soni"),
-        )
-        return redirect("/students/")
+
+        d=TalabaForm(request.POST)
+        if d.is_valid():
+            Talaba.objects.create(
+                ism=d.cleaned_data['ism'],
+                kurs=d.cleaned_data['kurs'],
+                kitob_soni=d.cleaned_data['kitob_soni']
+            )
+
+
+
+
+        # Talaba.objects.create(
+        #     ism=request.POST.get("ismi"),
+        #     kurs=request.POST.get("k"),
+        #     kitob_soni=request.POST.get("k_soni"),
+        # )
+        # return redirect("/students/")
 
     natija = Talaba.objects.all()
 
@@ -35,7 +56,8 @@ def all_students(request):
     if kiritilgan_ismi is not None:
         natija = Talaba.objects.filter(ism__contains=kiritilgan_ismi)
     data = {
-        "students": natija
+        "students": natija,
+        'form': TalabaForm()
     }
     return render(request, "Students.html", data)
 
@@ -101,12 +123,20 @@ def bitta_talaba(request, pk):
 
 
 def hamma_mualliflar(request):
+
+    if request.method=="POST":
+        d = MuallifForm(request.POST)
+        if d.is_valid():
+            d.save()
+            return redirect('/hamma_mualliflar/')
+
     natija = Muallif.objects.all()
     muallif_ismi = request.GET.get("muallif_ismi")
     if muallif_ismi is not None:
         natija = Muallif.objects.filter(ism__contains=muallif_ismi)
     data = {
-        "mualliflar": natija
+        "mualliflar": natija,
+        'form': MuallifForm()
     }
     return render(request, "Mualliflar.html", data)
 
@@ -119,6 +149,7 @@ def muallifni_tahrirlash(request, pk):
         muallif.tugilgan_sana = request.POST['sana']
         muallif.Kitoblar_soni = request.POST['kitoblar_soni']
         muallif.tirik = request.POST.get('tirikmi', False) == 'on'
+        muallif.save()
 
         return redirect('/hamma_mualliflar/')
 
@@ -161,13 +192,17 @@ def bitta_kitob(request, pk):
 def recordlarni_tahrirlash(request, pk):
     if request.method == 'POST':
         record = Record.objects.get(id=pk)
-        record.talaba.ism=request.POST.get('ism'),
-        record.Kitob.nom=request.POST.get('kitob'),
-        record.kutubxonachi.ism=request.POST.get('kutibxonachi'),
-        record.olingan_sana=request.POST.get('olingan_sana'),
-        record.qaytardi=request.POST['qaytardi', False]='on',
-        record.qaytarish_sana=request.POST['qaytarish_sana'],
-        record.save(),
+
+        record.talaba=Talaba.objects.get(id=request.POST["ism"])
+
+        record.Kitob=Kitob.objects.get(id=request.POST['kitob'])
+
+        record.kutubxonachi=Kutubxonachi.objects.get(id=request.POST['kutubxonachi'])
+
+       # record.olingan_sana=request.POST.get('olingan_sana')
+        record.qaytardi=request.POST.get('qaytardi', False)=='on'
+      #  record.qaytarish_sana=request.POST['qaytarish_sana']
+        record.save()
 
         return redirect('/hamma_recordlar/')
 
@@ -191,19 +226,27 @@ def hamma_recordlar(request):
     # Recordlar jadvali uchun malumot qo'shish
 
     if request.method == 'POST':
-        if request.POST.get("qaytardimi") == 'on':
-            natija = True
-        else:
-            natija = False
 
-        Record.objects.create(
-            talaba=Talaba.objects.get(id=request.POST.get('talaba')),
-            Kitob=Kitob.objects.get(id=request.POST.get('kitob')),
-            kutubxonachi=Kutubxonachi.objects.get(id=request.POST.get('k_chi')),
-            olingan_sana=request.POST.get("sana"),
-            qaytardi=natija,
-            qaytarish_sana=request.POST.get("q_sana"),
-        )
+        d=RecordForm(request.POST)
+        if d.is_valid():
+            d.save()
+
+
+        # if request.POST.get("qaytardimi") == 'on':
+        #     natija = True
+        # else:
+        #     natija = False
+        #
+        # Record.objects.create(
+        #     talaba=Talaba.objects.get(id=request.POST.get('talaba')),
+        #     Kitob=Kitob.objects.get(id=request.POST.get('kitob')),
+        #     kutubxonachi=Kutubxonachi.objects.get(id=request.POST.get('k_chi')),
+        #     olingan_sana=request.POST.get("sana"),
+        #     qaytardi=natija,
+        #     qaytarish_sana=request.POST.get("q_sana"),
+        # )
+
+
         return redirect("/hamma_recordlar/")
 
     natija = Record.objects.all()
@@ -214,7 +257,8 @@ def hamma_recordlar(request):
         "kitoblar": Kitob.objects.all(),
         "kutubxonachi": Kutubxonachi.objects.all(),
         "talabalar": Talaba.objects.all(),
-        "record": natija
+        "record": natija,
+        'form': RecordForm()
     }
     return render(request, "Records.html", data)
 
@@ -336,13 +380,20 @@ def kutubxonachilarni_tahrirlash(request, pk):
 
 def kutubxonachilar(request):
     if request.method == 'POST':
-        Kutubxonachi.objects.create(
-            ism=request.POST.get("ismi"),
-            ish_vaqti=request.POST.get("vaqt"),
-        )
+
+        d=KutubxonachiForm(request.POST)
+
+        if d.is_valid():
+            d.save()
+
+        # Kutubxonachi.objects.create(
+        #     ism=request.POST.get("ismi"),
+        #     ish_vaqti=request.POST.get("vaqt"),
+        # )
         return redirect("/kutubxonachilar/")
     data = {
-        "kutubxonachilar": Kutubxonachi.objects.all()
+        "kutubxonachilar": Kutubxonachi.objects.all(),
+        'forms': KutubxonachiForm()
     }
     return render(request, "Kutubxonachilar.html", data)
 

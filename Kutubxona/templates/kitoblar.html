@@ -20,15 +20,18 @@
     {%endfor%}
 
     <form method="post">{%csrf_token%}
-        <input type="text" name="nomi" placeholder="Kitobning nomi">
-        <input type="text" name="janr" placeholder="Kitob janri">
-        <input type="number" name="sahifa" placeholder="Sahifalar soni">
-        <label>Muallif:</label>
-        <select name="mualliflar">
-            {%for muallif in mualliflar%}
-            <option value="{{muallif.id}}">{{muallif.ism}}</option>
-            {%endfor%}
-        </select>
+
+        {{form.as_p}}
+
+<!--        <input type="text" name="nomi" placeholder="Kitobning nomi">-->
+<!--        <input type="text" name="janr" placeholder="Kitob janri">-->
+<!--        <input type="number" name="sahifa" placeholder="Sahifalar soni">-->
+<!--        <label>Muallif:</label>-->
+<!--        <select name="mualliflar">-->
+<!--            {%for muallif in mualliflar%}-->
+<!--            <option value="{{muallif.id}}">{{muallif.ism}}</option>-->
+<!--            {%endfor%}-->
+<!--        </select>-->
         <button>Qo'shish</button>
     </form>
 

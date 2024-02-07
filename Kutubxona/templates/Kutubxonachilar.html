@@ -16,17 +16,20 @@
     {%endfor%}
 
     <form method="post">{%csrf_token%}
-        <label>Ism:</label>
-        <input name="ismi" type="text">
-        <label>Ish vaqti:</label>
-        <select name="vaqt">
-            <option value="8:00 dan 17:00 gacha">
-                8:00 dan 17:00 gacha
-            </option>
-            <option value="10:00 dan 21:00 gacha">
-                10:00 dan 21:00 gacha
-            </option>
-        </select>
+
+        {{forms.as_p}}
+
+<!--        <label>Ism:</label>-->
+<!--        <input name="ismi" type="text">-->
+<!--        <label>Ish vaqti:</label>-->
+<!--        <select name="vaqt">-->
+<!--            <option value="8:00 dan 17:00 gacha">-->
+<!--                8:00 dan 17:00 gacha-->
+<!--            </option>-->
+<!--            <option value="10:00 dan 21:00 gacha">-->
+<!--                10:00 dan 21:00 gacha-->
+<!--            </option>-->
+<!--        </select>-->
         <button>Qo'shish</button>
     </form>
 

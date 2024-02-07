@@ -21,19 +21,24 @@
     {%endfor%}
 
     <form method="post">{% csrf_token%}
-        <label>Ismi va Familiyasi: </label>
-        <input name="ismi" type="text" placeholder="Muallifning ismi">
-        <label>Jins:</label>
-        <select name="jins">
-            <option value="Erkak">Erkak</option>
-            <option value="Ayol">Ayol</option>
-        </select>
-        <label>Tug'ilgan sanasi:</label>
-        <input name="date" type="date" placeholder="Tug'ilgan kuni">
-        <label>Kitoblari soni: </label>
-        <input name="kitob" type="number" placeholder="Kitoblar soni">
-        <label>Tirik:</label>
-        <input type="checkbox" name="tirikmi">
+
+
+        {{form.as_p}}
+
+
+<!--        <label>Ismi va Familiyasi: </label>-->
+<!--        <input name="ismi" type="text" placeholder="Muallifning ismi">-->
+<!--        <label>Jins:</label>-->
+<!--        <select name="jins">-->
+<!--            <option value="Erkak">Erkak</option>-->
+<!--            <option value="Ayol">Ayol</option>-->
+<!--        </select>-->
+<!--        <label>Tug'ilgan sanasi:</label>-->
+<!--        <input name="date" type="date" placeholder="Tug'ilgan kuni">-->
+<!--        <label>Kitoblari soni: </label>-->
+<!--        <input name="kitob" type="number" placeholder="Kitoblar soni">-->
+<!--        <label>Tirik:</label>-->
+<!--        <input type="checkbox" name="tirikmi">-->
         <button>Qo'shish</button>
     </form>
 </body>
